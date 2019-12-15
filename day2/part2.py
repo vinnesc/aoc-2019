@@ -25,14 +25,20 @@ def run(program):
 
 with open(file_name) as f:
   op_codes = f.read().split(',')
-  program = list(map(int, op_codes))
-
-  # Fix program
-  program[1] = 12
-  program[2] = 2
+  original = list(map(int, op_codes))
   
-  print(program)
-  run(program)
-  print(program)
+  for noun in range(0, 100):
+    for verb in range(0, 100):
+      program = original.copy()
+      # Fix program
+      program[1] = noun 
+      program[2] = verb
 
+      run(program)
+
+      if program[0] == 19690720:
+        print('Noun: ' + str(noun))
+        print('Verb: ' + str(verb))
+
+        print('Answer: ' + str(100 * noun + verb))
   
